@@ -1,4 +1,47 @@
 function Get-CloudVMStatus {
+    <#
+    .SYNOPSIS
+        Get the status of virtual machines across Azure, AWS and GCP.
+
+    .DESCRIPTION
+        This command retrieves the status information of Azure (virtual machine) /AWS (EC2 Instance) / GCP (Compute Engine)
+
+    .NOTES
+        Author: Naveen Kumar (https://www.linkedin.com/in/tnaveen-kumar/)
+
+    .EXAMPLE
+        PS C:\> Get-DbaMaxMemory -SqlInstance sqlcluster, sqlserver2012
+
+        Get memory settings for instances "sqlcluster" and "sqlserver2012". Returns results in megabytes (MB).
+
+    .EXAMPLE
+        [21.77 sec] > Get-CloudVMStatus
+        Please select a cloud provider:
+        1. Azure Virtual Machines
+        2. AWS EC2 Instances
+        3. GCP Compute Engine
+        Enter the number (1 for Azure, 2 for AWS, 3 for GCP): 2
+        Fetching AWS EC2 Instances...
+        Enter the AWS region: us-east-1
+        EC2 Instance ID: i-03b12b2485b9d7 | Status: stopped
+        EC2 Instance ID: i-0cc329cb7984dd | Status: stopped
+        EC2 Instance ID: i-09e19c12b74f70 | Status: stopped
+        EC2 Instance ID: i-09622afcfe0967 | Status: stopped
+    .EXAMPLE
+        [4.36 sec] > Get-CloudVMStatus
+        Please select a cloud provider:
+        1. Azure Virtual Machines
+        2. AWS EC2 Instances
+        3. GCP Compute Engine
+        Enter the number (1 for Azure, 2 for AWS, 3 for GCP): 3
+        Fetching GCP Compute Engine Instances...
+        Enter the GCP Project ID: gcp-lab-4
+
+        Name    Status
+        ----    ------
+        demo-vm TERMINATED
+    #>
+
     $cloudOptions = @(
         "Azure (Virtual Machines)",
         "AWS (EC2 Instances)",
